@@ -1,0 +1,13 @@
+This patch fixes the udpdump fifo stream open mode for Windows.
+
+--- udpdump.c.orig	2018-02-23 19:41:37.000000000 +0000
++++ udpdump.c	2018-03-29 21:40:14.419991569 +0100
+@@ -178,7 +178,7 @@ static int setup_dumpfile(const char* fi
+ 		return EXIT_SUCCESS;
+ 	}
+ 
+-	*fp = fopen(fifo, "w");
++	*fp = fopen(fifo, "wb");
+ 	if (!(*fp)) {
+ 		g_warning("Error creating output file: %s", g_strerror(errno));
+ 		return EXIT_FAILURE;
